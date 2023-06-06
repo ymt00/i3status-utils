@@ -73,7 +73,7 @@ func Bemenu(items []string, args ...string) string {
 		"--list", "10",
 		"--prefix", "",
 		"--prompt", " Menu",
-		"--no-spacing",
+		// "--no-spacing",
 		"--line-height", "26",
 		"--tb", "#6272a4",
 		"--tf", "#f8f8f2",
