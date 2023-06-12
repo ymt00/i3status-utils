@@ -5,17 +5,9 @@ import (
 	"encoding/json"
 	"io"
 	"os/exec"
+	"regexp"
 	"strings"
 )
-
-func contains(s []interface{}, e string) bool {
-	for _, a := range s {
-		if a == e {
-			return true
-		}
-	}
-	return false
-}
 
 func appIds(nodes []interface{}, apps *[]interface{}) {
 	for i := range nodes {
@@ -116,12 +108,19 @@ func SwayMsgWorkspaces() []Workspace {
 	return workspaces
 }
 
-// IsAppRunning check if an application 'app' is currently running
+// IsAppRunning check if an application 'app' (pattern) is currently running
 func IsAppRunning(app string) bool {
 	nodes := SwayMsgTree()
 
 	var apps []interface{}
 	appIds(nodes, &apps)
 
-	return contains(apps, app)
+	for _, a := range apps {
+		matched, _ := regexp.MatchString(app, a.(string))
+		if matched {
+			return true
+		}
+	}
+
+	return false
 }
