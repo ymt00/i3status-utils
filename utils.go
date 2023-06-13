@@ -76,7 +76,7 @@ type Tree struct {
 
 // SwayMsgTree returns the sway message tree
 func SwayMsgTree() []interface{} {
-	cmd := exec.Command("swaymsg", "-r", "-t", "get_tree")
+	cmd := exec.Command("swaymsg", "-rt", "get_tree")
 
 	out, _ := cmd.CombinedOutput()
 
@@ -97,7 +97,7 @@ type Workspace struct {
 
 // SwayMsgWorkspaces returns the sway message workspaces
 func SwayMsgWorkspaces() []Workspace {
-	cmd := exec.Command("swaymsg", "-r", "-t", "get_workspaces")
+	cmd := exec.Command("swaymsg", "-rt", "get_workspaces")
 
 	out, _ := cmd.CombinedOutput()
 
